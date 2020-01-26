@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <meta charset='utf-8'>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <style></style>
+    <title>social_game_test</title>
+    <script src="playcanvas-stable.min.js"></script>
+    <script>
+        ASSET_PREFIX = "";
+        SCRIPT_PREFIX = "";
+        SCENE_PATH = "840324.json";
+        CONTEXT_OPTIONS = {
+            'antialias': true,
+            'alpha': false,
+            'preserveDrawingBuffer': false,
+            'preferWebGl2': true
+        };
+        SCRIPTS = [ 25657573 ];
+        CONFIG_FILENAME = "config.json";
+        INPUT_SETTINGS = {
+            useKeyboard: true,
+            useMouse: true,
+            useGamepads: false,
+            useTouch: true
+        };
+        pc.script.legacy = false;
+        PRELOAD_MODULES = [
+            {'moduleName' : 'Ammo', 'glueUrl' : 'files/assets/26590392/1/ammo.wasm.js', 'wasmUrl' : 'files/assets/26590390/1/ammo.wasm.wasm', 'fallbackUrl' : 'files/assets/26590391/1/ammo.js', 'preload' : true},
+        ];
+    </script>
+</head>
+<body>
+    <script src="__modules__.js"></script>
+    <script src="__start__.js"></script>
+    <script src="__loading__.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker
+                .register("./serviceWorker.js")
+                .then(function (registration) {
+                    if (typeof registration.update == "function") {
+                        registration.update();
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error Log: " + error);
+                });
+        }
+    </script>
+</body>
+</html>
