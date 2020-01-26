@@ -1,13 +1,13 @@
 {
-	"short_name": "pwa_test",
-	"name": "pwa",
+	"short_name": "PWA_test",
+	"name": "PWA_test",
+	"start_url": "",
+	"display": "fullscreen",
 	"icons": [
 		{
 			"src": "thumbs/192.jpg",
 			"sizes": "192x192",
 			"type": "image/jpeg"
 		}
-    ],
-    "start_url": "./index.html",
-	"display": "standalone"
+	]
 }
