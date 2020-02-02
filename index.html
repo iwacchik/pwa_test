@@ -6,34 +6,20 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="manifest" href="manifest.json">
     <title>PWA Test</title>
-    <script src="playcanvas-stable.min.js"></script>
-    <script>
-        ASSET_PREFIX = "";
-        SCRIPT_PREFIX = "";
-        SCENE_PATH = "840324.json";
-        CONTEXT_OPTIONS = {
-            'antialias': true,
-            'alpha': false,
-            'preserveDrawingBuffer': false,
-            'preferWebGl2': true
-        };
-        SCRIPTS = [ 25657573 ];
-        CONFIG_FILENAME = "config.json";
-        INPUT_SETTINGS = {
-            useKeyboard: true,
-            useMouse: true,
-            useGamepads: false,
-            useTouch: true
-        };
-        pc.script.legacy = false;
-        PRELOAD_MODULES = [
-            {'moduleName' : 'Ammo', 'glueUrl' : 'files/assets/26590392/1/ammo.wasm.js', 'wasmUrl' : 'files/assets/26590390/1/ammo.wasm.wasm', 'fallbackUrl' : 'files/assets/26590391/1/ammo.js', 'preload' : true},
-        ];
-    </script>
+    <script src="https://code.playcanvas.com/playcanvas-1.24.4.min.js" ></script>
+    <script src="playcanvas-setting.js" ></script>
 </head>
-<body>
-    <script src="__modules__.js"></script>
-    <script src="__start__.js"></script>
+<body style="color:white">
+    <p>
+        <span id="quota"></span>GB
+    </p>
+    <p>
+        現在、使用可能なストレージの約 <span id="percent">
+        </span>% を使用しています。
+    </p>
+
+    <script src="__modules__.js" ></script>
+    <script src="__start__.js" ></script>
     <script src="__loading__.js"></script>
     <script>
         if ("serviceWorker" in navigator) {
@@ -47,6 +33,26 @@
                 .catch(function (error) {
                     console.log("Error Log: " + error);
                 });
+        }        
+    </script>
+    <script>
+        if( "storage" in navigator ){
+    
+            navigator.storage.estimate().then(estimate => {
+    
+                // estimate.quota は見積もりクォータです
+                // estimate.usage は見積もり使用バイト数です
+                document.getElementById("quota").innerHTML = (estimate.quota / 1024 / 1024 / 1024).toFixed(2);
+    
+                document.getElementById("percent").innerHTML =
+                    (estimate.usage * 100 / estimate.quota).toFixed(2);
+            });
+                
+        }else{
+            let element = document.createElement( "p" );
+            element.innerHTML = "storage未対応です";
+
+            document.body.appendChild( element );
         }
     </script>
 </body>
